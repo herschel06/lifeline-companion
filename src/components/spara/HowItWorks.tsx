@@ -30,8 +30,8 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
   // rope draws between step 2 and 3, request travels during step 4
   const rope = useTransform(progress, [0.45, 0.68], [0, 1]);
   const ropeOpacity = useTransform(progress, [0.44, 0.52], [0, 1]);
-  const buddyOpacity = useTransform(progress, [0.2, 0.4], [0, 1]);
-  const buddyX = useTransform(progress, [0.2, 0.44], [40, 0]);
+  const buddyOpacity = useTransform(progress, [0, 0.2, 0.42, 1], [0, 0, 1, 1]);
+  const buddyX = useTransform(progress, [0, 0.2, 0.44, 1], [40, 40, 0, 0]);
   const travel = useTransform(progress, [0.82, 0.95], [0, 1]);
   const travelOpacity = useTransform(progress, [0.8, 0.84, 0.95, 0.99], [0, 1, 1, 0]);
   const unlock = useTransform(progress, [0.94, 1], [0, 1]);
