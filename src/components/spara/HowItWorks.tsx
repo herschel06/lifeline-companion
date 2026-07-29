@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { Lifesaver } from "./Lifesaver";
 import { Reveal } from "./Reveal";
 
@@ -26,15 +26,11 @@ const steps = [
   },
 ];
 
-function Stage({ progress }: { progress: MotionValue<number> }) {
-  // rope draws between step 2 and 3, request travels during step 4
-  const rope = useTransform(progress, [0.45, 0.68], [0, 1]);
-  const ropeOpacity = useTransform(progress, [0.44, 0.52], [0, 1]);
-  const buddyOpacity = useTransform(progress, [0, 0.2, 0.42, 1], [0, 0, 1, 1]);
-  const buddyX = useTransform(progress, [0, 0.2, 0.44, 1], [40, 40, 0, 0]);
-  const travel = useTransform(progress, [0.82, 0.95], [0, 1]);
-  const travelOpacity = useTransform(progress, [0.8, 0.84, 0.95, 0.99], [0, 1, 1, 0]);
-  const unlock = useTransform(progress, [0.94, 1], [0, 1]);
+const spring = { duration: 0.9, ease: [0.22, 1, 0.36, 1] } as const;
+
+function Stage({ step }: { step: number }) {
+  const connected = step >= 2;
+  const requesting = step >= 3;
 
   return (
     <div className="relative h-full w-full">
@@ -51,7 +47,9 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
           className="text-brand/45"
           strokeWidth="2"
           strokeLinecap="round"
-          style={{ pathLength: rope, opacity: ropeOpacity }}
+          initial={false}
+          animate={{ pathLength: connected ? 1 : 0, opacity: connected ? 1 : 0 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         />
       </svg>
 
@@ -59,7 +57,9 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
         <div className="relative w-[42%] max-w-[20rem]">
           <Lifesaver className="w-full scale-[1.5] animate-float" alt="Your lifesaver" />
           <motion.span
-            style={{ opacity: travelOpacity }}
+            initial={false}
+            animate={{ opacity: requesting ? 1 : 0, y: requesting ? 0 : 8 }}
+            transition={spring}
             className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-card px-3 py-1 text-xs font-medium whitespace-nowrap shadow-soft"
           >
             Request sent
@@ -67,7 +67,9 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
         </div>
 
         <motion.div
-          style={{ opacity: buddyOpacity, x: buddyX }}
+          initial={false}
+          animate={{ opacity: step >= 1 ? 1 : 0, x: step >= 1 ? 0 : 48 }}
+          transition={spring}
           className="relative w-[42%] max-w-[20rem]"
         >
           <Lifesaver
@@ -75,7 +77,9 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
             alt="Buddy lifesaver"
           />
           <motion.span
-            style={{ opacity: unlock }}
+            initial={false}
+            animate={{ opacity: step >= 3 ? 1 : 0, scale: step >= 3 ? 1 : 0.9 }}
+            transition={{ ...spring, delay: step >= 3 ? 0.8 : 0 }}
             className="absolute right-2 -bottom-2 rounded-full bg-brand px-3 py-1 text-xs font-medium text-primary-foreground shadow-soft"
           >
             Approved
@@ -85,7 +89,9 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
 
       <motion.div
         aria-hidden
-        style={{ left: useTransform(travel, [0, 1], ["28%", "72%"]), opacity: travelOpacity }}
+        initial={false}
+        animate={{ left: requesting ? "72%" : "28%", opacity: requesting ? [0, 1, 1, 0] : 0 }}
+        transition={{ duration: 1.6, ease: "easeInOut" }}
         className="absolute top-[26%] size-3 -translate-x-1/2 rounded-full bg-brand shadow-[0_0_20px_6px_rgba(45,90,235,0.35)]"
       />
     </div>
@@ -96,6 +102,10 @@ export function HowItWorks() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const x = useTransform(scrollYProgress, [0.05, 0.95], ["0%", "-75%"]);
+  const [step, setStep] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setStep(Math.min(3, Math.max(0, Math.floor(v * 4 + 0.15))));
+  });
 
   return (
     <section id="how-it-works" className="bg-background">
@@ -112,7 +122,7 @@ export function HowItWorks() {
       <div ref={ref} className="relative hidden h-[420vh] lg:block">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           <div className="mx-auto h-[30vh] w-full max-w-3xl">
-            <Stage progress={scrollYProgress} />
+            <Stage step={step} />
           </div>
 
           <motion.ol style={{ x }} className="mt-16 flex w-[400%] items-start">
