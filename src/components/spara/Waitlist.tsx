@@ -20,7 +20,7 @@ export function Waitlist() {
 
       <div className="mx-auto flex max-w-3xl flex-col items-center px-6 py-36 text-center lg:py-48">
         <Reveal>
-          <Lifesaver className="mx-auto w-48 animate-float lg:w-64" alt="" />
+          <Lifesaver className="mx-auto w-72 animate-float lg:w-[26rem]" alt="" />
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-10 text-[clamp(2.2rem,5.4vw,4rem)] leading-[1.02] font-extrabold text-deep-foreground">

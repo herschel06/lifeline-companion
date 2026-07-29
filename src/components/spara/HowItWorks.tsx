@@ -28,13 +28,13 @@ const steps = [
 
 function Stage({ progress }: { progress: MotionValue<number> }) {
   // rope draws between step 2 and 3, request travels during step 4
-  const rope = useTransform(progress, [0.34, 0.62], [0, 1]);
-  const ropeOpacity = useTransform(progress, [0.32, 0.45], [0, 1]);
-  const buddyOpacity = useTransform(progress, [0.16, 0.36], [0, 1]);
-  const buddyX = useTransform(progress, [0.16, 0.4], [40, 0]);
-  const travel = useTransform(progress, [0.7, 0.9], [0, 1]);
-  const travelOpacity = useTransform(progress, [0.68, 0.72, 0.92, 0.96], [0, 1, 1, 0]);
-  const unlock = useTransform(progress, [0.92, 1], [0, 1]);
+  const rope = useTransform(progress, [0.45, 0.68], [0, 1]);
+  const ropeOpacity = useTransform(progress, [0.44, 0.52], [0, 1]);
+  const buddyOpacity = useTransform(progress, [0.2, 0.4], [0, 1]);
+  const buddyX = useTransform(progress, [0.2, 0.44], [40, 0]);
+  const travel = useTransform(progress, [0.82, 0.95], [0, 1]);
+  const travelOpacity = useTransform(progress, [0.8, 0.84, 0.95, 0.99], [0, 1, 1, 0]);
+  const unlock = useTransform(progress, [0.94, 1], [0, 1]);
 
   return (
     <div className="relative h-full w-full">
@@ -46,19 +46,18 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
         preserveAspectRatio="none"
       >
         <motion.path
-          d="M150 118 C 260 60, 340 60, 450 118"
+          d="M170 100 C 260 46, 340 46, 430 100"
           stroke="currentColor"
-          className="text-brand/40"
+          className="text-brand/45"
           strokeWidth="2"
-          strokeDasharray="1 8"
           strokeLinecap="round"
           style={{ pathLength: rope, opacity: ropeOpacity }}
         />
       </svg>
 
-      <div className="absolute inset-0 flex items-center justify-between px-2 sm:px-8">
-        <div className="relative w-[38%] max-w-[15rem]">
-          <Lifesaver className="w-full animate-float" alt="Your lifesaver" />
+      <div className="absolute inset-0 flex items-center justify-between px-0">
+        <div className="relative w-[42%] max-w-[20rem]">
+          <Lifesaver className="w-full scale-[1.5] animate-float" alt="Your lifesaver" />
           <motion.span
             style={{ opacity: travelOpacity }}
             className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-card px-3 py-1 text-xs font-medium whitespace-nowrap shadow-soft"
@@ -67,8 +66,14 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
           </motion.span>
         </div>
 
-        <motion.div style={{ opacity: buddyOpacity, x: buddyX }} className="w-[38%] max-w-[15rem]">
-          <Lifesaver className="w-full animate-float [animation-delay:-4s]" alt="Buddy lifesaver" />
+        <motion.div
+          style={{ opacity: buddyOpacity, x: buddyX }}
+          className="relative w-[42%] max-w-[20rem]"
+        >
+          <Lifesaver
+            className="w-full scale-[1.5] animate-float [animation-delay:-4s]"
+            alt="Buddy lifesaver"
+          />
           <motion.span
             style={{ opacity: unlock }}
             className="absolute right-2 -bottom-2 rounded-full bg-brand px-3 py-1 text-xs font-medium text-primary-foreground shadow-soft"
@@ -80,8 +85,8 @@ function Stage({ progress }: { progress: MotionValue<number> }) {
 
       <motion.div
         aria-hidden
-        style={{ left: useTransform(travel, [0, 1], ["24%", "72%"]), opacity: travelOpacity }}
-        className="absolute top-[38%] size-3 -translate-x-1/2 rounded-full bg-brand shadow-[0_0_20px_6px_rgba(45,90,235,0.35)]"
+        style={{ left: useTransform(travel, [0, 1], ["28%", "72%"]), opacity: travelOpacity }}
+        className="absolute top-[26%] size-3 -translate-x-1/2 rounded-full bg-brand shadow-[0_0_20px_6px_rgba(45,90,235,0.35)]"
       />
     </div>
   );
@@ -106,7 +111,7 @@ export function HowItWorks() {
       {/* Desktop: scroll-driven horizontal story */}
       <div ref={ref} className="relative hidden h-[420vh] lg:block">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
-          <div className="mx-auto h-[26vh] w-full max-w-3xl">
+          <div className="mx-auto h-[30vh] w-full max-w-3xl">
             <Stage progress={scrollYProgress} />
           </div>
 
