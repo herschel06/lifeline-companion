@@ -62,26 +62,39 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 1rem;
+  --background: oklch(0.995 0.003 250);
+  --foreground: oklch(0.19 0.055 258);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.19 0.055 258);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.19 0.055 258);
+  --primary: oklch(0.48 0.21 262);
+  --primary-foreground: oklch(0.99 0.005 250);
+  --secondary: oklch(0.965 0.014 249);
+  --secondary-foreground: oklch(0.32 0.11 260);
+  --muted: oklch(0.965 0.012 249);
+  --muted-foreground: oklch(0.55 0.04 256);
+  --accent: oklch(0.94 0.03 245);
+  --accent-foreground: oklch(0.32 0.11 260);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.925 0.014 250);
+  --input: oklch(0.925 0.014 250);
+  --ring: oklch(0.48 0.21 262);
+
+  /* Spara brand */
+  --deep: oklch(0.24 0.12 264);
+  --deep-foreground: oklch(0.97 0.01 250);
+  --brand: oklch(0.48 0.21 262);
+  --brand-soft: oklch(0.66 0.16 258);
+  --mist: oklch(0.965 0.018 245);
+  --gradient-sky: linear-gradient(180deg, oklch(0.995 0.003 250) 0%, oklch(0.955 0.025 246) 100%);
+  --gradient-deep: linear-gradient(165deg, oklch(0.28 0.13 264) 0%, oklch(0.17 0.09 264) 100%);
+  --gradient-brand: linear-gradient(135deg, oklch(0.52 0.21 262), oklch(0.63 0.17 250));
+  --shadow-float: 0 40px 80px -32px oklch(0.35 0.14 262 / 0.35);
+  --shadow-soft: 0 20px 50px -28px oklch(0.35 0.14 262 / 0.32);
+  --ease-spara: cubic-bezier(0.22, 1, 0.36, 1);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
