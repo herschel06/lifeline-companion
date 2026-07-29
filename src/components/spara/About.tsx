@@ -1,44 +1,64 @@
+import { Heart } from "lucide-react";
 import { Reveal } from "./Reveal";
+import anton from "@/assets/founder-anton.jpg";
+import herschel from "@/assets/founder-herschel.jpg";
+
+const founders = [
+  {
+    name: "Anton",
+    school: "Georgetown University",
+    photo: anton,
+    body: "Passionate about behavioral health, product, and creating real-world impact through technology.",
+  },
+  {
+    name: "Herschel",
+    school: "UCLA",
+    photo: herschel,
+    body: "Focused on building beautiful products that help people make better decisions every day.",
+  },
+];
 
 export function About() {
   return (
-    <section id="about" className="bg-mist py-32 lg:py-44">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="about" className="bg-background py-32 lg:py-48">
+      <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24 lg:px-10">
         <Reveal>
-          <h2 className="max-w-2xl text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.05] font-extrabold">
-            Built by two people who think recovery tools can be better.
+          <p className="text-xs font-semibold tracking-[0.24em] text-brand uppercase">About us</p>
+          <h2 className="mt-8 max-w-sm text-[clamp(1.9rem,3.6vw,2.8rem)] leading-[1.08] font-extrabold tracking-[-0.03em]">
+            We're building the tool we wish we had.
           </h2>
+          <p className="mt-8 max-w-sm leading-relaxed text-muted-foreground">
+            We're not clinicians. We're builders working alongside clinicians and people with
+            lived experience to build something that lasts.
+          </p>
+          <p className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-brand">
+            <Heart className="size-4" strokeWidth={1.6} aria-hidden />
+            Anton &amp; Herschel
+          </p>
         </Reveal>
 
-        <div className="mt-20 grid gap-14 md:grid-cols-2 lg:gap-24">
-          {[
-            {
-              name: "Anton",
-              school: "Georgetown University",
-              body: "Building the product, and the part of it that has to feel human at 2am.",
-            },
-            {
-              name: "Herschel",
-              school: "UCLA",
-              body: "Working with clinicians and people in recovery so nothing here is guesswork.",
-            },
-          ].map((p, i) => (
-            <Reveal key={p.name} delay={i * 0.1}>
-              <h3 className="text-2xl font-bold">{p.name}</h3>
-              <p className="mt-1 text-sm tracking-wide text-brand">{p.school}</p>
-              <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground">
-                {p.body}
-              </p>
+        <div className="grid gap-14 sm:grid-cols-2 lg:gap-16">
+          {founders.map((p, i) => (
+            <Reveal key={p.name} delay={0.1 + i * 0.12}>
+              <div className="flex flex-col gap-5 sm:flex-row lg:gap-6">
+                <img
+                  src={p.photo}
+                  alt={`Portrait of ${p.name}`}
+                  width={720}
+                  height={928}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-36 w-28 shrink-0 rounded-[1.25rem] object-cover grayscale transition-all duration-700 hover:grayscale-0"
+                />
+                <div className="min-w-0">
+                  <h3 className="text-xl font-bold">{p.name}</h3>
+                  <p className="mt-1 text-sm text-brand">{p.school}</p>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">{p.body}</p>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.2}>
-          <p className="mt-20 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            We're not clinicians. We build alongside them — and alongside people with lived
-            experience — because the tools that exist today were too easy to walk around.
-          </p>
-        </Reveal>
       </div>
     </section>
   );

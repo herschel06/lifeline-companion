@@ -1,38 +1,42 @@
 import { Reveal } from "./Reveal";
-import { Lifesaver } from "./Lifesaver";
 import { WaitlistForm } from "./WaitlistForm";
-import ocean from "@/assets/ocean-wide.jpg";
+import lighthouse from "@/assets/lighthouse.jpg";
 
 export function Waitlist() {
   return (
-    <section id="waitlist" className="relative isolate overflow-hidden">
-      <img
-        src={ocean}
-        alt=""
-        aria-hidden
-        width={1920}
-        height={1088}
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 -z-10 size-full object-cover"
-      />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-deep/70" />
+    <section className="bg-background px-6 pb-32 lg:px-10 lg:pb-40">
+      <div
+        id="waitlist"
+        className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-[2.5rem]"
+      >
+        <img
+          src={lighthouse}
+          alt=""
+          aria-hidden
+          width={1600}
+          height={1008}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 -z-10 size-full object-cover object-[75%_center]"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 veil-right"
+        />
 
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-6 py-36 text-center lg:py-48">
-        <Reveal>
-          <Lifesaver className="mx-auto w-72 animate-float lg:w-[26rem]" alt="" />
-        </Reveal>
-        <Reveal delay={0.1}>
-          <h2 className="mt-10 text-[clamp(2.2rem,5.4vw,4rem)] leading-[1.02] font-extrabold text-deep-foreground">
-            Better days are ahead.
-          </h2>
-          <p className="mt-6 text-lg text-deep-foreground/70">
-            Join the waitlist for early access to Spara.
-          </p>
-        </Reveal>
-        <Reveal delay={0.2} className="mt-10 flex w-full justify-center">
-          <WaitlistForm tone="deep" id="final-email" />
-        </Reveal>
+        <div className="max-w-xl px-8 py-24 sm:px-14 lg:py-32">
+          <Reveal>
+            <h2 className="text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.03] font-extrabold tracking-[-0.03em]">
+              Join the first wave.
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground">
+              Be the first to experience Spara.
+            </p>
+          </Reveal>
+          <Reveal delay={0.12} className="mt-10">
+            <WaitlistForm id="final-email" />
+          </Reveal>
+        </div>
       </div>
     </section>
   );
