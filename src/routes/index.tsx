@@ -2,9 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { Nav } from "@/components/spara/Nav";
 import { Hero } from "@/components/spara/Hero";
-import { FeatureStrip } from "@/components/spara/FeatureStrip";
 import { Problem } from "@/components/spara/Problem";
-import { Solution } from "@/components/spara/Solution";
 import { HowItWorks } from "@/components/spara/HowItWorks";
 import { Tiers } from "@/components/spara/Tiers";
 import { WhyItWorks } from "@/components/spara/WhyItWorks";
@@ -52,9 +50,7 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <FeatureStrip />
         <Problem />
-        <Solution />
         <HowItWorks />
         <Tiers />
         <WhyItWorks />
