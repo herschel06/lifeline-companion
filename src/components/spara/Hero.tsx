@@ -1,82 +1,78 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowDown, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import sea from "@/assets/hero-sea.jpg";
+import { motion } from "motion/react";
+import { Waves } from "./Waves";
+import { WaitlistForm } from "./WaitlistForm";
+import lifesaver from "@/assets/hero-scene.png";
+import lighthouse from "@/assets/lighthouse-3d.png";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
-  const { scrollY } = useScroll();
-  const imgY = useTransform(scrollY, [0, 900], [0, 120]);
-  const imgScale = useTransform(scrollY, [0, 900], [1, 1.08]);
-
   return (
-    <section id="top" className="relative isolate overflow-hidden">
-      <motion.img
-        style={{ y: imgY, scale: imgScale }}
-        src={sea}
-        alt="A blue and white lifesaver floating on a calm ocean at dawn"
-        width={1600}
-        height={1104}
-        fetchPriority="high"
-        decoding="async"
-        className="absolute inset-0 -z-10 size-full object-cover object-[70%_center]"
-      />
+    <section id="top" className="surface-hero relative isolate overflow-hidden">
+      <Waves className="absolute inset-x-0 bottom-0 -z-10 h-[70%] w-full text-brand/25" />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 veil-right"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 -z-10 h-28 bg-linear-to-b from-transparent to-background"
+        className="absolute top-24 right-[22%] -z-10 size-72 rounded-full bg-[oklch(0.95_0.06_85)] opacity-50 blur-3xl"
       />
 
-      <div className="mx-auto max-w-7xl px-6 pt-44 pb-40 lg:px-10 lg:pt-56 lg:pb-56">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 pt-36 pb-24 lg:grid-cols-[1fr_1.05fr] lg:px-10 lg:pt-44 lg:pb-32">
         <motion.div
           initial="hidden"
           animate="visible"
-          transition={{ staggerChildren: 0.14, delayChildren: 0.1 }}
-          className="max-w-2xl"
+          transition={{ staggerChildren: 0.13, delayChildren: 0.05 }}
         >
           <Item>
-            <span className="inline-flex items-center gap-2.5 rounded-full bg-card/80 px-5 py-2.5 text-sm text-muted-foreground shadow-soft backdrop-blur-md">
-              Recovery is a journey. We're here for it.
-              <span className="size-2 rounded-full bg-brand animate-pulse-dot" />
-            </span>
-          </Item>
-
-          <Item>
-            <h1 className="mt-9 text-[clamp(3rem,7.4vw,5.75rem)] leading-[0.95] font-extrabold tracking-[-0.03em]">
-              One choice
+            <h1 className="text-[clamp(3.2rem,7.6vw,5.5rem)] leading-[0.92] font-extrabold tracking-[-0.045em]">
+              Bet on
               <br />
-              can change
-              <br />
-              <span className="text-gradient-brand">everything.</span>
+              <span className="text-brand">Yourself.</span>
             </h1>
           </Item>
-
           <Item>
-            <p className="mt-8 max-w-md text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            <p className="mt-6 text-xl font-semibold tracking-tight text-foreground/80">
+              Gambling App Blocker
+            </p>
+          </Item>
+          <Item>
+            <p className="mt-5 max-w-sm text-lg leading-relaxed text-muted-foreground">
               Accountability that works in the moments that matter.
             </p>
           </Item>
-
           <Item>
-            <div className="mt-11 flex flex-wrap items-center gap-3">
-              <Button variant="hero" size="pill" asChild>
-                <a href="#waitlist" className="group">
-                  Join waitlist
-                  <ArrowRight className="ml-1 size-4 transition-transform duration-500 group-hover:translate-x-1" />
-                </a>
-              </Button>
-              <Button variant="quiet" size="pill" asChild>
-                <a href="#how-it-works" className="group">
-                  See how it works
-                  <ArrowDown className="ml-1 size-4 transition-transform duration-500 group-hover:translate-y-1" />
-                </a>
-              </Button>
+            <div className="mt-10">
+              <WaitlistForm id="hero-email" />
             </div>
           </Item>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.6, ease, delay: 0.15 }}
+          className="relative"
+        >
+          <motion.img
+            src={lighthouse}
+            alt=""
+            aria-hidden
+            width={768}
+            height={1024}
+            decoding="async"
+            className="absolute -top-16 right-2 w-24 opacity-90 sm:w-32 lg:-top-24 lg:w-40"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.img
+            src={lifesaver}
+            alt="Spara lifesaver floating on calm water"
+            width={1600}
+            height={1200}
+            fetchPriority="high"
+            decoding="async"
+            className="relative w-full drop-shadow-[0_36px_50px_oklch(0.5_0.12_255_/_0.25)]"
+            animate={{ y: [-10, 10, -10], rotate: [-1, 1.2, -1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
         </motion.div>
       </div>
     </section>
@@ -87,10 +83,10 @@ function Item({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 26, filter: "blur(8px)" },
+        hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
         visible: { opacity: 1, y: 0, filter: "blur(0px)" },
       }}
-      transition={{ duration: 1.2, ease }}
+      transition={{ duration: 1.1, ease }}
     >
       {children}
     </motion.div>

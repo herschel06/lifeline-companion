@@ -4,14 +4,13 @@ import { Nav } from "@/components/spara/Nav";
 import { Hero } from "@/components/spara/Hero";
 import { Problem } from "@/components/spara/Problem";
 import { HowItWorks } from "@/components/spara/HowItWorks";
-import { Tiers } from "@/components/spara/Tiers";
 import { WhyItWorks } from "@/components/spara/WhyItWorks";
 import { Features } from "@/components/spara/Features";
 import { About } from "@/components/spara/About";
 import { Waitlist } from "@/components/spara/Waitlist";
 import { Footer } from "@/components/spara/Footer";
 
-const title = "Spara — One choice can change everything";
+const title = "Spara — Bet on Yourself | Gambling App Blocker";
 const description =
   "Spara puts another person between you and your impulse. Accountability-first recovery from gambling addiction, built for the moments that matter.";
 
@@ -52,9 +51,8 @@ function Index() {
         <Hero />
         <Problem />
         <HowItWorks />
-        <Tiers />
-        <WhyItWorks />
         <Features />
+        <WhyItWorks />
         <About />
         <Waitlist />
       </main>

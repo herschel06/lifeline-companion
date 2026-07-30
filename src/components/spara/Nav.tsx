@@ -5,6 +5,7 @@ import logo from "@/assets/spara-logo.png.asset.json";
 const links = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Why it works", href: "#why-it-works" },
+  { label: "Features", href: "#features" },
   { label: "About", href: "#about" },
 ];
 

@@ -1,42 +1,54 @@
+import { motion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { WaitlistForm } from "./WaitlistForm";
-import lighthouse from "@/assets/lighthouse.jpg";
+import { Waves } from "./Waves";
+import lifesaver from "@/assets/hero-scene.png";
+import lighthouse from "@/assets/lighthouse-3d.png";
 
 export function Waitlist() {
   return (
-    <section className="bg-background px-6 pb-32 lg:px-10 lg:pb-40">
+    <section className="bg-background px-4 pb-24 sm:px-6 lg:px-10 lg:pb-32">
       <div
         id="waitlist"
-        className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-[2.5rem]"
+        className="surface-hero relative isolate mx-auto grid max-w-7xl items-center gap-8 overflow-hidden rounded-[2.5rem] px-8 py-16 lg:grid-cols-[1fr_1.2fr_0.7fr] lg:px-14"
       >
-        <img
-          src={lighthouse}
+        <Waves className="absolute inset-x-0 bottom-0 -z-10 h-2/3 w-full text-brand/25" />
+
+        <motion.img
+          src={lifesaver}
           alt=""
           aria-hidden
           width={1600}
-          height={1008}
+          height={1200}
           loading="lazy"
           decoding="async"
-          className="absolute inset-0 -z-10 size-full object-cover object-[75%_center]"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 veil-right"
+          className="mx-auto w-56 lg:w-full"
+          animate={{ y: [-8, 8, -8], rotate: [-1, 1, -1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <div className="max-w-xl px-8 py-24 sm:px-14 lg:py-32">
-          <Reveal>
-            <h2 className="text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.03] font-extrabold tracking-[-0.03em]">
-              Join the first wave.
-            </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              Be the first to experience Spara.
-            </p>
-          </Reveal>
-          <Reveal delay={0.12} className="mt-10">
+        <Reveal className="text-center lg:text-left">
+          <h2 className="text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.05] font-extrabold tracking-[-0.04em]">
+            Bet on <span className="text-brand">Yourself.</span>
+          </h2>
+          <p className="mt-3 text-sm font-semibold text-foreground/70">Gambling App Blocker</p>
+          <div className="mt-7 flex justify-center lg:justify-start">
             <WaitlistForm id="final-email" />
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
+
+        <motion.img
+          src={lighthouse}
+          alt=""
+          aria-hidden
+          width={768}
+          height={1024}
+          loading="lazy"
+          decoding="async"
+          className="mx-auto hidden w-32 lg:block lg:w-40"
+          animate={{ y: [0, -7, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
     </section>
   );

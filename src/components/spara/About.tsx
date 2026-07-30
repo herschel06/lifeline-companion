@@ -20,7 +20,7 @@ const founders = [
 
 export function About() {
   return (
-    <section id="about" className="bg-background py-32 lg:py-48">
+    <section id="about" className="bg-background py-24 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24 lg:px-10">
         <Reveal>
           <p className="text-xs font-semibold tracking-[0.24em] text-brand uppercase">About us</p>
