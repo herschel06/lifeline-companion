@@ -10,7 +10,7 @@ import { About } from "@/components/spara/About";
 import { Waitlist } from "@/components/spara/Waitlist";
 import { Footer } from "@/components/spara/Footer";
 
-const title = "Spara — One choice can change everything";
+const title = "Spara — Bet on Yourself | Gambling App Blocker";
 const description =
   "Spara puts another person between you and your impulse. Accountability-first recovery from gambling addiction, built for the moments that matter.";
 
