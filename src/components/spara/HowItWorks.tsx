@@ -1,180 +1,187 @@
 import { motion } from "motion/react";
-import { Check, Send } from "lucide-react";
+import {
+  Shield,
+  UserPlus,
+  Download,
+  CheckCircle2,
+  Send,
+  ShieldCheck,
+  Users,
+  Bell,
+  BadgeCheck,
+} from "lucide-react";
 import { Reveal } from "./Reveal";
-import { Phone } from "./Phone";
-import { Lifesaver } from "./Lifesaver";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const steps = [
+  {
+    n: 1,
+    title: "Set it up",
+    body: "Block your gambling apps and invite a trusted contact.",
+    align: "lg:items-start lg:text-left",
+  },
+  {
+    n: 2,
+    title: "They join",
+    body: "They download Spara and accept your invite.",
+    align: "lg:items-center lg:text-center",
+  },
+  {
+    n: 3,
+    title: "You create the pause",
+    body: "When you try to bypass, they decide.",
+    align: "lg:items-end lg:text-right",
+  },
+];
+
+const track = [
+  { icon: Shield, label: "Block apps" },
+  { icon: UserPlus, label: "Invite buddy" },
+  { icon: Download, label: "Download app" },
+  { icon: CheckCircle2, label: "Accept invite" },
+  { icon: Send, label: "Send request" },
+  { icon: ShieldCheck, label: "Approve or decline" },
+];
+
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-background pb-32 lg:pb-48">
-      <div className="mx-auto max-w-7xl px-6 text-center lg:px-10">
-        <Reveal>
-          <p className="text-xs font-semibold tracking-[0.24em] text-brand uppercase">
-            How it works
-          </p>
-          <h2 className="mx-auto mt-8 max-w-3xl text-[clamp(2rem,4.8vw,3.5rem)] leading-[1.06] font-extrabold tracking-[-0.03em]">
-            Add a <span className="text-brand">human</span> between you and your impulse.
-          </h2>
-        </Reveal>
-      </div>
+    <section id="how-it-works" className="bg-background px-4 pb-24 sm:px-6 lg:px-10 lg:pb-32">
+      <div className="mx-auto max-w-7xl rounded-[2.5rem] bg-card px-6 py-20 shadow-soft ring-1 ring-border/50 sm:px-10 lg:py-24">
+        <div className="text-center">
+          <Reveal>
+            <p className="text-[11px] font-semibold tracking-[0.26em] text-brand uppercase">
+              How it works
+            </p>
+            <h2 className="mt-7 text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.1] font-extrabold tracking-[-0.035em]">
+              A human creates the <span className="text-brand">pause.</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+              When you want to bypass, you ask. They decide.
+              <span className="block">That's the pause that changes everything.</span>
+            </p>
+          </Reveal>
+        </div>
 
-      <div className="mx-auto mt-24 grid max-w-7xl gap-20 px-6 lg:grid-cols-4 lg:gap-10 lg:px-10">
-        <Step
-          index={1}
-          title="Invite"
-          body="Invite a trusted contact."
-          delay={0}
-          visual={
-            <Phone>
-              <p className="text-sm font-semibold">Invite a trusted contact</p>
-              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                They'll be your accountability buddy on Spara.
-              </p>
-              <div className="mt-5 flex items-center gap-2.5 rounded-xl bg-mist px-3 py-2.5">
-                <span className="grid size-7 place-items-center rounded-full bg-brand/10 text-[10px] font-bold text-brand">
-                  D
-                </span>
-                <div className="min-w-0 text-left">
-                  <p className="truncate text-[11px] font-medium">Dad</p>
-                  <p className="truncate text-[10px] text-muted-foreground">dad@email.com</p>
+        <div className="mt-20 grid gap-12 lg:grid-cols-3 lg:gap-10">
+          {steps.map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.12}>
+              <div className={`flex flex-col items-center text-center ${s.align}`}>
+                <div className="flex items-center gap-3">
+                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-[11px] font-bold text-primary-foreground">
+                    {s.n}
+                  </span>
+                  <h3 className="text-lg font-bold tracking-tight">{s.title}</h3>
                 </div>
+                <p className="mt-3 max-w-[16rem] text-sm leading-relaxed text-muted-foreground">
+                  {s.body}
+                </p>
               </div>
-              <motion.div
-                animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="mt-4 flex items-center justify-center gap-2 rounded-full bg-brand py-2.5 text-xs font-semibold text-primary-foreground"
-              >
-                <Send className="size-3.5" strokeWidth={2} aria-hidden />
-                Send invite
-              </motion.div>
-            </Phone>
-          }
-        />
+            </Reveal>
+          ))}
+        </div>
 
-        <Step
-          index={2}
-          title="They accept"
-          body="They download the app and accept your invite."
-          delay={0.1}
-          visual={
-            <Phone tone="deep">
-              <p className="text-[10px] tracking-[0.2em] text-deep-foreground/50 uppercase">
-                Spara
-              </p>
-              <p className="mt-2 text-sm leading-snug font-semibold">
-                You've been invited to be an accountability buddy.
-              </p>
-              <Lifesaver className="mx-auto mt-5 w-24 animate-float" alt="" />
-              <div className="mt-5 rounded-full bg-brand py-2.5 text-center text-xs font-semibold text-primary-foreground">
-                Accept invite
-              </div>
-            </Phone>
-          }
-        />
+        <Track />
 
-        <Step
-          index={3}
-          title="You're connected"
-          body="Now you're connected, and accountability begins."
-          delay={0.2}
-          visual={<Connected />}
-        />
-
-        <Step
-          index={4}
-          title="Request & approve"
-          body="When you try to bypass, they get the request."
-          delay={0.3}
-          visual={
-            <Phone>
-              <p className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
-                Approve bypass?
-              </p>
-              <p className="mt-2 text-sm leading-snug font-semibold">
-                Anton wants to bypass Casino Blocker
-              </p>
-              <motion.div
-                initial={{ opacity: 0.5 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, ease }}
-                className="mt-5 space-y-2"
-              >
-                <div className="rounded-full bg-brand py-2.5 text-center text-xs font-semibold text-primary-foreground">
-                  Approve
-                </div>
-                <div className="rounded-full bg-mist py-2.5 text-center text-xs font-semibold">
-                  Decline
-                </div>
-              </motion.div>
-              <div className="mt-5 flex items-center justify-center gap-1.5 text-[10px] text-brand">
-                <Check className="size-3" strokeWidth={2.5} aria-hidden />
-                Blocker stays on until they answer
-              </div>
-            </Phone>
-          }
-        />
+        <BlockStrip />
       </div>
     </section>
   );
 }
 
-function Connected() {
+function Track() {
   return (
-    <div className="relative flex h-full min-h-[16rem] items-center justify-center">
-      <div aria-hidden className="absolute size-40 rounded-full border border-brand/15 animate-ripple" />
-      <motion.div
-        initial={{ opacity: 0, x: -14 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-15% 0px" }}
-        transition={{ duration: 1.1, ease }}
-      >
-        <Lifesaver className="w-32 animate-float" alt="" />
-      </motion.div>
-      <motion.span
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: "-15% 0px" }}
-        transition={{ duration: 1.1, delay: 0.35, ease }}
-        className="h-0.5 w-10 origin-left rounded-full bg-brand/40"
+    <div className="relative mt-16 lg:mt-20">
+      <div
+        aria-hidden
+        className="absolute top-7 right-6 left-6 hidden h-px border-t border-dashed border-brand/30 lg:block"
       />
-      <motion.div
-        initial={{ opacity: 0, x: 14 }}
-        whileInView={{ opacity: 1, x: 0 }}
+      <motion.span
+        aria-hidden
+        initial={{ left: "3%", opacity: 0 }}
+        whileInView={{
+          left: ["3%", "97%"],
+          opacity: [0, 1, 1, 0],
+          y: [0, -7, 0, 7, 0],
+        }}
         viewport={{ once: true, margin: "-15% 0px" }}
-        transition={{ duration: 1.1, delay: 0.15, ease }}
-      >
-        <Lifesaver className="w-32 animate-float [animation-delay:-4s]" alt="" />
-      </motion.div>
+        transition={{ duration: 4.6, ease: "easeInOut", delay: 0.4 }}
+        className="absolute top-[26px] hidden size-2.5 rounded-full bg-brand shadow-[0_0_0_5px_oklch(0.48_0.21_262_/_0.15)] lg:block"
+      />
+
+      <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+        {track.map((t, i) => (
+          <Reveal key={t.label} delay={0.1 + i * 0.08}>
+            <div className="flex flex-col items-center gap-3">
+              <motion.span
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.5, ease }}
+                className="grid size-14 place-items-center rounded-full bg-card shadow-soft ring-1 ring-border/60"
+              >
+                <t.icon className="size-5 text-brand" strokeWidth={1.5} aria-hidden />
+              </motion.span>
+              <p className="text-center text-[11px] font-medium text-muted-foreground">
+                {t.label}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </div>
   );
 }
 
-function Step({
-  index,
+function BlockStrip() {
+  return (
+    <Reveal delay={0.15}>
+      <div className="mt-16 grid gap-6 rounded-[1.75rem] bg-mist p-6 lg:grid-cols-[1.1fr_1fr_1fr] lg:items-center lg:gap-5">
+        <div className="flex items-center gap-4">
+          <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-brand/12">
+            <Users className="size-6 text-brand" strokeWidth={1.5} aria-hidden />
+          </span>
+          <div className="min-w-0">
+            <p className="text-base font-bold tracking-tight">The block stays when it matters.</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+              Your buddy keeps the power in their hands.
+            </p>
+          </div>
+        </div>
+
+        <Plan icon={Bell} tone="soft" title="On free" body="You're notified. They're in the loop." />
+        <Plan icon={BadgeCheck} tone="brand" title="On premium" body="They must approve for you to continue." />
+      </div>
+    </Reveal>
+  );
+}
+
+function Plan({
+  icon: Icon,
   title,
   body,
-  visual,
-  delay,
+  tone,
 }: {
-  index: number;
+  icon: typeof Bell;
   title: string;
   body: string;
-  visual: React.ReactNode;
-  delay: number;
+  tone: "soft" | "brand";
 }) {
   return (
-    <Reveal delay={delay} className="flex flex-col items-center text-center lg:items-start lg:text-left">
-      <div className="flex items-center gap-3">
-        <span className="grid size-6 shrink-0 place-items-center rounded-full border border-brand/40 text-[11px] font-semibold text-brand">
-          {index}
-        </span>
-        <h3 className="text-base font-semibold">{title}</h3>
+    <motion.div
+      whileHover={{ y: -3 }}
+      transition={{ duration: 0.5, ease }}
+      className="flex items-center gap-3.5 rounded-2xl bg-card px-4 py-4 shadow-soft"
+    >
+      <span
+        className={`grid size-10 shrink-0 place-items-center rounded-full ${
+          tone === "brand" ? "bg-brand text-primary-foreground" : "bg-brand/10 text-brand"
+        }`}
+      >
+        <Icon className="size-4.5" strokeWidth={1.6} aria-hidden />
+      </span>
+      <div className="min-w-0">
+        <p className="text-sm font-bold">{title}</p>
+        <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{body}</p>
       </div>
-      <p className="mt-3 max-w-[15rem] text-sm leading-relaxed text-muted-foreground">{body}</p>
-      <div className="mt-10 flex w-full justify-center lg:justify-start">{visual}</div>
-    </Reveal>
+    </motion.div>
   );
 }
