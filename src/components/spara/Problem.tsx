@@ -3,15 +3,15 @@ import { Globe, Trash2, EyeOff, Smartphone } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const floaters = [
-  { icon: Globe, label: "VPN", pos: "left-[2%] top-[6%]", delay: 0 },
-  { icon: Trash2, label: "Delete app", pos: "left-[14%] top-[52%]", delay: 1.2 },
-  { icon: EyeOff, label: "Disable blocker", pos: "right-[3%] top-[8%]", delay: 0.6 },
-  { icon: Smartphone, label: "New device", pos: "right-[16%] top-[54%]", delay: 1.8 },
+  { icon: Globe, label: "VPN", pos: "left-[6%] top-[12%]", delay: 0 },
+  { icon: Trash2, label: "Delete app", pos: "left-[16%] top-[58%]", delay: 1.2 },
+  { icon: EyeOff, label: "Disable blocker", pos: "right-[7%] top-[12%]", delay: 0.6 },
+  { icon: Smartphone, label: "New device", pos: "right-[17%] top-[58%]", delay: 1.8 },
 ];
 
 export function Problem() {
   return (
-    <section className="relative isolate overflow-hidden bg-background py-28 lg:py-40">
+    <section className="relative isolate overflow-hidden bg-background py-24 lg:py-32">
       {/* floating bypass icons, drifting far behind the message */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
         <Orbits />
