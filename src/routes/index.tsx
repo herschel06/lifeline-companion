@@ -4,7 +4,6 @@ import { Nav } from "@/components/spara/Nav";
 import { Hero } from "@/components/spara/Hero";
 import { Problem } from "@/components/spara/Problem";
 import { HowItWorks } from "@/components/spara/HowItWorks";
-import { Tiers } from "@/components/spara/Tiers";
 import { WhyItWorks } from "@/components/spara/WhyItWorks";
 import { Features } from "@/components/spara/Features";
 import { About } from "@/components/spara/About";
@@ -52,9 +51,8 @@ function Index() {
         <Hero />
         <Problem />
         <HowItWorks />
-        <Tiers />
-        <WhyItWorks />
         <Features />
+        <WhyItWorks />
         <About />
         <Waitlist />
       </main>
