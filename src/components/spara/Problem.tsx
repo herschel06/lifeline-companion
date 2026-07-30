@@ -1,53 +1,100 @@
 import { motion } from "motion/react";
-import { Globe, Trash2, ShieldOff, Smartphone } from "lucide-react";
+import { Globe, Trash2, EyeOff, Smartphone } from "lucide-react";
 import { Reveal } from "./Reveal";
 
-const bypasses = [
-  { icon: Globe, label: "VPN" },
-  { icon: Trash2, label: "Delete app" },
-  { icon: ShieldOff, label: "Disable blocker" },
-  { icon: Smartphone, label: "New device" },
+const floaters = [
+  { icon: Globe, label: "VPN", pos: "left-[2%] top-[6%]", delay: 0 },
+  { icon: Trash2, label: "Delete app", pos: "left-[14%] top-[52%]", delay: 1.2 },
+  { icon: EyeOff, label: "Disable blocker", pos: "right-[3%] top-[8%]", delay: 0.6 },
+  { icon: Smartphone, label: "New device", pos: "right-[16%] top-[54%]", delay: 1.8 },
 ];
 
 export function Problem() {
   return (
-    <section className="bg-background py-32 lg:py-48">
-      <div className="mx-auto max-w-5xl px-6 text-center lg:px-10">
+    <section className="relative isolate overflow-hidden bg-background py-28 lg:py-40">
+      {/* floating bypass icons, drifting far behind the message */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
+        <Orbits />
+        {floaters.map((f) => (
+          <motion.div
+            key={f.label}
+            className={`absolute ${f.pos} flex flex-col items-center gap-2.5`}
+            animate={{ y: [-10, 10, -10], x: [4, -4, 4] }}
+            transition={{
+              duration: 13,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: f.delay,
+            }}
+          >
+            <span className="grid size-16 place-items-center rounded-full bg-card/70 shadow-soft ring-1 ring-border/50 backdrop-blur-sm">
+              <f.icon className="size-6 text-foreground/45" strokeWidth={1.3} />
+            </span>
+            <p className="text-[11px] font-medium text-muted-foreground/70">{f.label}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="mx-auto max-w-2xl px-6 text-center lg:px-10">
         <Reveal>
-          <p className="text-xs font-semibold tracking-[0.24em] text-brand uppercase">
+          <p className="text-[11px] font-semibold tracking-[0.26em] text-brand uppercase">
             The problem
           </p>
-          <h2 className="mx-auto mt-8 max-w-3xl text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] font-extrabold tracking-[-0.03em]">
-            Blocking apps are easy to bypass.
+          <h2 className="mt-7 text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.1] font-extrabold tracking-[-0.035em]">
+            Blockers don't create change.
             <span className="block">
-              That's <span className="text-brand">the problem.</span>
+              They create <span className="text-brand">workarounds.</span>
             </span>
           </h2>
         </Reveal>
-
-        <div className="mt-20 grid grid-cols-2 gap-5 sm:gap-7 lg:grid-cols-4">
-          {bypasses.map((b, i) => (
-            <Reveal key={b.label} delay={i * 0.1}>
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="flex h-full flex-col items-center justify-center gap-4 rounded-[1.5rem] bg-mist px-6 py-10"
-              >
-                <b.icon className="size-7 text-foreground/70" strokeWidth={1.4} aria-hidden />
-                <p className="text-sm font-medium">{b.label}</p>
-              </motion.div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={0.2}>
-          <p className="mx-auto mt-20 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            People don't relapse because technology fails. They relapse because there's{" "}
-            <span className="font-semibold text-foreground">no pause</span> between urge and
-            action.
+        <Reveal delay={0.15}>
+          <p className="mx-auto mt-8 max-w-md text-lg leading-relaxed text-muted-foreground">
+            Technology can't create the pause you need.
+            <span className="block">
+              Only a <span className="font-semibold text-foreground">human</span> can.
+            </span>
           </p>
         </Reveal>
       </div>
+
+      {/* mobile: simple floating row */}
+      <div className="mt-16 grid grid-cols-2 gap-6 px-6 lg:hidden">
+        {floaters.map((f, i) => (
+          <motion.div
+            key={f.label}
+            className="flex flex-col items-center gap-2.5"
+            animate={{ y: [-6, 6, -6] }}
+            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: i * 0.7 }}
+          >
+            <span className="grid size-14 place-items-center rounded-full bg-card shadow-soft ring-1 ring-border/50">
+              <f.icon className="size-5 text-foreground/45" strokeWidth={1.3} />
+            </span>
+            <p className="text-[11px] text-muted-foreground">{f.label}</p>
+          </motion.div>
+        ))}
+      </div>
     </section>
+  );
+}
+
+function Orbits() {
+  return (
+    <svg viewBox="0 0 1440 520" className="size-full" preserveAspectRatio="none">
+      {[
+        "M60 120 C 220 60, 300 260, 150 330 S 60 200, 320 250",
+        "M1380 130 C 1220 70, 1140 270, 1290 340 S 1380 210, 1120 260",
+      ].map((d) => (
+        <path
+          key={d}
+          d={d}
+          fill="none"
+          stroke="currentColor"
+          className="text-brand/25"
+          strokeWidth="1.2"
+          strokeDasharray="2 9"
+          strokeLinecap="round"
+        />
+      ))}
+    </svg>
   );
 }
