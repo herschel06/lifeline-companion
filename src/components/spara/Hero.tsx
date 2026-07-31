@@ -6,7 +6,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   return (
-    <section id="top" className="relative isolate min-h-[92vh] overflow-hidden">
+    <section id="top" className="relative isolate min-h-[40rem] lg:min-h-[46rem] overflow-hidden">
       <motion.img
         src={ocean}
         alt="Calm sunrise ocean with a floating lifesaver and a distant lighthouse"
@@ -14,7 +14,7 @@ export function Hero() {
         height={1088}
         fetchPriority="high"
         decoding="async"
-        className="absolute inset-0 -z-20 size-full object-cover object-right"
+        className="absolute inset-0 -z-20 size-full object-cover object-center"
         initial={{ scale: 1.06, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 2.2, ease }}
@@ -25,7 +25,7 @@ export function Hero() {
         className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-b from-transparent to-background"
       />
 
-      <div className="mx-auto flex min-h-[92vh] max-w-7xl items-center px-6 pt-36 pb-24 lg:px-10">
+      <div className="mx-auto flex min-h-[40rem] lg:min-h-[46rem] max-w-7xl items-center px-6 pt-36 pb-24 lg:px-10">
         <motion.div
           className="max-w-xl"
           initial="hidden"
