@@ -1,14 +1,366 @@
-# Welcome to your Lovable project
+# Spara: Your Accountability Partner
+
+Spara Landing Page
+
+Goal
+
+Design a premium landing page for Spara, an iOS app helping people recover from gambling addiction through accountability.
+
+This is not a mental health website.
+
+It should feel like Apple launching a new product.
+
+The goal is to make visitors immediately understand one simple idea:
+
+Spara puts another person between you and your impulse.
+
+The website should feel hopeful, premium, calming, modern, and beautifully designed—not clinical, depressing, or startup-y.
+
+Overall Design Direction
+
+Take heavy inspiration from:
+
+ Apple product pages
+
+ Personio's homepage layout (large spacious hero)
+
+ Linear
+
+ Stripe
+
+ Arc Browser
+
+Prioritize:
+
+ huge typography
+
+ lots of whitespace
+
+ very few borders
+
+ very few cards
+
+ soft shadows
+
+ subtle gradients
+
+ premium spacing
+
+ beautiful animations
+
+ slow scrolling
+
+ clean grids
+
+Avoid:
+
+ dashboard-looking layouts
+
+ giant feature grids
+
+ excessive cards
+
+ too much text
+
+ clutter
+
+ generic SaaS sections
+
+ stock illustration style
+
+The website should feel emotional, not corporate.
+
+Brand
+
+Primary color:
+
+Deep Spara blue.
+
+Accent:
+
+White.
+
+Very light blue gradients.
+
+Use our uploaded logo.
+
+Use the uploaded reference images for the visual direction.
+
+Hero
+
+The hero should occupy around 70% of the first viewport, similar to Personio.
+
+Left side:
+
+Large headline.
+
+Example:
+
+One choice can change everything.
+
+Subheadline.
+
+Waitlist email field.
+
+Primary CTA.
+
+Secondary CTA saying "See how it works."
+
+Right side:
+
+A large floating 3D lifesaver in calm ocean water.
+
+The lifesaver should feel like the mascot of the product.
+
+Subtle water movement.
+
+Very gentle floating animation.
+
+Tiny birds and distant lighthouse are okay but should remain subtle.
+
+Do not overdecorate.
+
+At the bottom of the hero, transition directly into the next section without a hard break.
+
+Feature Strip
+
+Directly underneath the hero should be a seamless feature navigation similar to Personio.
+
+Small horizontal pills.
+
+Examples:
+
+ Accountability
+
+ Trusted Contact
+
+ Clarity
+
+ Progress
+
+ Daily Check-ins
+
+No giant cards.
+
+Keep it elegant.
+
+Problem Section
+
+Large typography.
+
+Very little text.
+
+Example:
+
+Blocking apps are easy to bypass.
+
+That's the problem.
+
+Show four simple icons:
+
+ VPN
+
+ Delete app
+
+ Disable blocker
+
+ New device
+
+Everything should feel airy.
+
+Solution Section
+
+Headline:
+
+Add a human between you and your impulse.
+
+This should become the centerpiece of the website.
+
+Interactive "How It Works"
+
+This is the most important section.
+
+Create a beautiful horizontal animation.
+
+Step 1
+
+Invite trusted contact.
+
+Step 2
+
+They download Spara.
+
+Step 3
+
+They accept.
+
+Both lifesavers become connected.
+
+Step 4
+
+User wants to bypass.
+
+Request travels to buddy.
+
+Buddy approves.
+
+Blocker unlocks.
+
+Use animation instead of lots of text.
+
+The animation should explain the product without reading paragraphs.
+
+Free vs Premium
+
+Do not create pricing tables.
+
+Instead create two elegant comparison cards.
+
+Free:
+
+Trusted contact gets notified after a bypass.
+
+Premium:
+
+Trusted contact must approve before the blocker unlocks.
+
+Use animation to show the difference.
+
+Why It Works
+
+Minimal.
+
+Large typography.
+
+One beautiful image.
+
+Very little copy.
+
+Focus on creating a pause between impulse and action.
+
+Features
+
+Small icons.
+
+No giant feature cards.
+
+Include:
+
+ Accountability
+
+ Clarity Score
+
+ Daily Check-ins
+
+ Progress Tracking
+
+Keep this section visually lightweight.
+
+About Us
+
+Introduce the founders.
+
+Anton.
+
+Georgetown University.
+
+Herschel.
+
+UCLA.
+
+Position us as builders creating better recovery tools while working alongside clinicians and people with lived experience.
+
+Avoid sounding overly corporate.
+
+Keep it authentic.
+
+Waitlist
+
+Large final call-to-action.
+
+Beautiful ocean background.
+
+Large lifesaver.
+
+Simple email field.
+
+Primary CTA.
+
+No unnecessary elements.
+
+Navigation
+
+Very minimal.
+
+Logo left.
+
+How it Works.
+
+Why it Works.
+
+About.
+
+Join Waitlist button.
+
+Animations
+
+Animations should feel like Apple.
+
+Not flashy.
+
+Not playful.
+
+Not gimmicky.
+
+Ideas:
+
+ lifesaver gently floating
+
+ subtle water ripples
+
+ scroll parallax
+
+ lighthouse beam
+
+ notification traveling between phones
+
+ rope connecting two lifesavers
+
+ smooth fade transitions
+
+ cards gently lifting on hover
+
+ section reveals
+
+ soft spring animations
+
+Everything should be slow and premium.
+
+Technical Requirements
+
+ Responsive on desktop, tablet, and mobile.
+
+ Prioritize typography and spacing over filling space.
+
+ Use large margins and generous whitespace.
+
+ The layout should never feel cramped.
+
+ Every section should breathe.
+
+ Optimize for performance and accessibility.
+
+Be opinionated. Do not try to include every possible landing-page pattern. If something feels unnecessary, remove it. The final result should feel like it was designed by Apple or Linear rather than generated by AI. Simplicity is more important than completeness.
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/43c44617-6ff8-43e9-96b9-59392ba78296).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +372,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
