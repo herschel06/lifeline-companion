@@ -1,6 +1,9 @@
+"use client";
+
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/spara-logo.png.asset.json";
+import logo from "@/assets/spara-logo.png";
 
 const links = [
   { label: "How it works", href: "#how-it-works" },
@@ -30,11 +33,12 @@ export function Nav() {
         className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-5 sm:flex sm:justify-between lg:px-10"
       >
         <a href="#top" className="flex min-w-0 items-center gap-2.5">
-          <img
-            src={logo.url}
+          <Image
+            src={logo}
             alt="Spara"
             width={40}
             height={40}
+            priority
             className="size-9 shrink-0 rounded-[11px]"
           />
           <span className="truncate text-lg font-bold tracking-tight">Spara</span>

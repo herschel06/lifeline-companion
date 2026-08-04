@@ -1,20 +1,24 @@
+"use client";
+
+import Image from "next/image";
 import { motion } from "motion/react";
 import { WaitlistForm } from "./WaitlistForm";
 import ocean from "@/assets/hero-ocean.jpg";
+
+const MotionImage = motion.create(Image);
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   return (
     <section id="top" className="relative isolate min-h-[40rem] lg:min-h-[46rem] overflow-hidden">
-      <motion.img
+      <MotionImage
         src={ocean}
         alt="Calm sunrise ocean with a floating lifesaver and a distant lighthouse"
-        width={1920}
-        height={1088}
-        fetchPriority="high"
-        decoding="async"
-        className="absolute inset-0 -z-20 size-full object-cover object-center"
+        fill
+        priority
+        sizes="100vw"
+        className="-z-20 object-cover object-center"
         initial={{ scale: 1.06, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 2.2, ease }}

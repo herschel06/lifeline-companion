@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import lifesaver from "@/assets/hero-lifesaver.png";
 
@@ -11,15 +12,6 @@ export function Lifesaver({
   alt?: string;
 }) {
   return (
-    <img
-      src={lifesaver}
-      alt={alt}
-      width={1200}
-      height={1200}
-      loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : undefined}
-      decoding="async"
-      className={cn("select-none", className)}
-    />
+    <Image src={lifesaver} alt={alt} priority={priority} className={cn("select-none", className)} />
   );
 }

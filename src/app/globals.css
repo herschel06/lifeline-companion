@@ -1,5 +1,5 @@
 @import "tailwindcss" source(none);
-@source "../src";
+@source "..";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -20,9 +20,9 @@
 
 @theme inline {
   --font-sans:
-    "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display:
-    "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --color-deep: var(--deep);
   --color-deep-foreground: var(--deep-foreground);
   --color-brand: var(--brand);

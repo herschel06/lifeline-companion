@@ -1,8 +1,13 @@
+"use client";
+
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Clock, Users, HeartHandshake } from "lucide-react";
 import { Reveal } from "./Reveal";
 import lighthouse from "@/assets/lighthouse.jpg";
+
+const MotionImage = motion.create(Image);
 
 const points = [
   { icon: Clock, text: "Even 30 seconds can interrupt an impulse." },
@@ -16,25 +21,15 @@ export function WhyItWorks() {
   const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
-    <section
-      id="why-it-works"
-      ref={ref}
-      className="relative isolate overflow-hidden bg-background"
-    >
-      <motion.img
+    <section id="why-it-works" ref={ref} className="relative isolate overflow-hidden bg-background">
+      <MotionImage
         style={{ y }}
         src={lighthouse}
         alt="A striped lighthouse on a small island at sunrise"
-        width={1600}
-        height={1008}
-        loading="lazy"
-        decoding="async"
+        sizes="100vw"
         className="absolute inset-0 -z-10 size-[116%] object-cover"
       />
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 veil-right"
-      />
+      <div aria-hidden className="absolute inset-0 -z-10 veil-right" />
 
       <div className="mx-auto max-w-7xl px-6 py-40 lg:px-10 lg:py-56">
         <Reveal className="max-w-md">

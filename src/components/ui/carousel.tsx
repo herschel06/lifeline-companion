@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -95,6 +97,8 @@ const Carousel = React.forwardRef<
       return;
     }
 
+    // Primes derived state from the embla API the same way the "select" listener updates it.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     onSelect(api);
     api.on("reInit", onSelect);
     api.on("select", onSelect);

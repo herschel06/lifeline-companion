@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import {
   Shield,
@@ -58,7 +60,7 @@ export function HowItWorks() {
             </h2>
             <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
               When you want to bypass, you ask. They decide.
-              <span className="block">That's the pause that changes everything.</span>
+              <span className="block">That&apos;s the pause that changes everything.</span>
             </p>
           </Reveal>
         </div>
@@ -120,9 +122,7 @@ function Track() {
               >
                 <t.icon className="size-5 text-brand" strokeWidth={1.5} aria-hidden />
               </motion.span>
-              <p className="text-center text-[11px] font-medium text-muted-foreground">
-                {t.label}
-              </p>
+              <p className="text-center text-[11px] font-medium text-muted-foreground">{t.label}</p>
             </div>
           </Reveal>
         ))}
@@ -147,8 +147,18 @@ function BlockStrip() {
           </div>
         </div>
 
-        <Plan icon={Bell} tone="soft" title="On free" body="You're notified. They're in the loop." />
-        <Plan icon={BadgeCheck} tone="brand" title="On premium" body="They must approve for you to continue." />
+        <Plan
+          icon={Bell}
+          tone="soft"
+          title="On free"
+          body="You're notified. They're in the loop."
+        />
+        <Plan
+          icon={BadgeCheck}
+          tone="brand"
+          title="On premium"
+          body="They must approve for you to continue."
+        />
       </div>
     </Reveal>
   );

@@ -1,9 +1,14 @@
+"use client";
+
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { WaitlistForm } from "./WaitlistForm";
 import { Waves } from "./Waves";
 import lifesaver from "@/assets/hero-scene.png";
 import lighthouse from "@/assets/lighthouse-3d.png";
+
+const MotionImage = motion.create(Image);
 
 export function Waitlist() {
   return (
@@ -14,14 +19,11 @@ export function Waitlist() {
       >
         <Waves className="absolute inset-x-0 bottom-0 -z-10 h-2/3 w-full text-brand/25" />
 
-        <motion.img
+        <MotionImage
           src={lifesaver}
           alt=""
           aria-hidden
-          width={1600}
-          height={1200}
-          loading="lazy"
-          decoding="async"
+          sizes="(min-width: 1024px) 33vw, 14rem"
           className="mx-auto w-56 lg:w-full"
           animate={{ y: [-8, 8, -8], rotate: [-1, 1, -1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -37,14 +39,11 @@ export function Waitlist() {
           </div>
         </Reveal>
 
-        <motion.img
+        <MotionImage
           src={lighthouse}
           alt=""
           aria-hidden
-          width={768}
-          height={1024}
-          loading="lazy"
-          decoding="async"
+          sizes="10rem"
           className="mx-auto hidden w-32 lg:block lg:w-40"
           animate={{ y: [0, -7, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}

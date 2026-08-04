@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import { Globe, Trash2, EyeOff, Smartphone } from "lucide-react";
 import { Reveal } from "./Reveal";
@@ -41,7 +43,7 @@ export function Problem() {
             The problem
           </p>
           <h2 className="mt-7 text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.1] font-extrabold tracking-[-0.035em]">
-            Blockers don't create change.
+            Blockers don&apos;t create change.
             <span className="block">
               They create <span className="text-brand">workarounds.</span>
             </span>
@@ -49,7 +51,7 @@ export function Problem() {
         </Reveal>
         <Reveal delay={0.15}>
           <p className="mx-auto mt-8 max-w-md text-lg leading-relaxed text-muted-foreground">
-            Technology can't create the pause you need.
+            Technology can&apos;t create the pause you need.
             <span className="block">
               Only a <span className="font-semibold text-foreground">human</span> can.
             </span>

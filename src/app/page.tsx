@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import type { Metadata } from "next";
 
 import { Nav } from "@/components/spara/Nav";
 import { Hero } from "@/components/spara/Hero";
@@ -14,38 +14,40 @@ const title = "Spara — Bet on Yourself | Gambling App Blocker";
 const description =
   "Spara puts another person between you and your impulse. Accountability-first recovery from gambling addiction, built for the moments that matter.";
 
-export const Route = createFileRoute("/")({
-  component: Index,
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: "Spara",
-          applicationCategory: "HealthApplication",
-          operatingSystem: "iOS",
-          description,
-        }),
-      },
-    ],
-  }),
-});
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title,
+    description,
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+};
 
-function Index() {
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Spara",
+  applicationCategory: "HealthApplication",
+  operatingSystem: "iOS",
+  description,
+};
+
+export default function Home() {
   return (
     <div className="min-h-screen bg-background">
+      <script
+        type="application/ld+json"
+
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Nav />
       <main>
         <Hero />
