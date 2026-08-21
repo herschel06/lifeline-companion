@@ -18,7 +18,14 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Canonical + Open Graph URLs need an absolute origin. Set NEXT_PUBLIC_SITE_URL
+// to the custom domain in Vercel; VERCEL_URL is only the per-deployment hostname.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Spara — Recovery with someone beside you",
     template: "%s",

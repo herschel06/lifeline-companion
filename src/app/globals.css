@@ -168,6 +168,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* Keeps anchor targets clear of the fixed header. */
+    scroll-padding-top: 6rem;
   }
 
   h1,

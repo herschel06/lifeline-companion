@@ -51,7 +51,7 @@ export function Hero() {
           </Item>
           <Item>
             <div className="mt-10">
-              <WaitlistForm id="hero-email" />
+              <WaitlistForm id="hero-email" source="hero" />
             </div>
           </Item>
         </motion.div>

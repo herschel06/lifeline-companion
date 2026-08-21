@@ -35,7 +35,7 @@ export function Waitlist() {
           </h2>
           <p className="mt-3 text-sm font-semibold text-foreground/70">Gambling App Blocker</p>
           <div className="mt-7 flex justify-center lg:justify-start">
-            <WaitlistForm id="final-email" />
+            <WaitlistForm id="final-email" source="final-cta" />
           </div>
         </Reveal>
 
