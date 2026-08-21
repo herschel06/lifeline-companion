@@ -1,197 +1,121 @@
 "use client";
 
 import { motion } from "motion/react";
-import {
-  Shield,
-  UserPlus,
-  Download,
-  CheckCircle2,
-  Send,
-  ShieldCheck,
-  Users,
-  Bell,
-  BadgeCheck,
-} from "lucide-react";
+import { UserPlus, Users, ShieldCheck } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const steps = [
   {
-    n: 1,
-    title: "Set it up",
-    body: "Block your gambling apps and invite a trusted contact.",
-    align: "lg:items-start lg:text-left",
+    n: "01",
+    icon: UserPlus,
+    title: "Invite someone you trust",
+    body: "Block your gambling apps, then invite a friend or family member.",
   },
   {
-    n: 2,
-    title: "They join",
-    body: "They download Spara and accept your invite.",
-    align: "lg:items-center lg:text-center",
+    n: "02",
+    icon: Users,
+    title: "They accept",
+    body: "They download Spara and join you. That's the whole setup.",
   },
   {
-    n: 3,
-    title: "You create the pause",
-    body: "When you try to bypass, they decide.",
-    align: "lg:items-end lg:text-right",
+    n: "03",
+    icon: ShieldCheck,
+    title: "They help you pause",
+    body: "When the urge hits and you try to bypass, they decide.",
   },
-];
-
-const track = [
-  { icon: Shield, label: "Block apps" },
-  { icon: UserPlus, label: "Invite buddy" },
-  { icon: Download, label: "Download app" },
-  { icon: CheckCircle2, label: "Accept invite" },
-  { icon: Send, label: "Send request" },
-  { icon: ShieldCheck, label: "Approve or decline" },
 ];
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-background px-4 pb-24 sm:px-6 lg:px-10 lg:pb-32">
-      <div className="mx-auto max-w-7xl rounded-[2.5rem] bg-card px-6 py-20 shadow-soft ring-1 ring-border/50 sm:px-10 lg:py-24">
+    <section id="how-it-works" className="bg-background px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24">
+      <div className="surface-deep mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] px-6 py-14 sm:px-10 lg:py-20">
         <div className="text-center">
           <Reveal>
-            <p className="text-[11px] font-semibold tracking-[0.26em] text-brand uppercase">
+            <p className="text-[11px] font-semibold tracking-[0.26em] text-brand-soft uppercase">
               How it works
             </p>
-            <h2 className="mt-7 text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.1] font-extrabold tracking-[-0.035em]">
-              A human creates the <span className="text-brand">pause.</span>
+            <h2 className="mt-6 text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.1] font-extrabold tracking-[-0.035em] text-deep-foreground">
+              A human creates the <span className="text-brand-soft">pause.</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-deep-foreground/65">
               When you want to bypass, you ask. They decide.
-              <span className="block">That&apos;s the pause that changes everything.</span>
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-20 grid gap-12 lg:grid-cols-3 lg:gap-10">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.12}>
-              <div className={`flex flex-col items-center text-center ${s.align}`}>
-                <div className="flex items-center gap-3">
-                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-[11px] font-bold text-primary-foreground">
-                    {s.n}
-                  </span>
-                  <h3 className="text-lg font-bold tracking-tight">{s.title}</h3>
-                </div>
-                <p className="mt-3 max-w-[16rem] text-sm leading-relaxed text-muted-foreground">
-                  {s.body}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+        <div className="mx-auto mt-14 grid max-w-5xl gap-y-12 lg:mt-16 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-start lg:gap-x-3">
+          <Step step={steps[0]} delay={0} />
+          <Connector delay={0.55} />
+          <Step step={steps[1]} delay={0.14} />
+          <Connector delay={0.95} />
+          <Step step={steps[2]} delay={0.28} />
         </div>
 
-        <Track />
-
-        <BlockStrip />
+        <Reveal delay={0.34}>
+          <p className="mx-auto mt-14 max-w-xl text-center text-sm leading-relaxed text-deep-foreground/55 lg:mt-16">
+            On free, they&apos;re notified after a bypass.{" "}
+            <span className="text-deep-foreground/85">
+              On premium, they approve before the block lifts.
+            </span>
+          </p>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function Track() {
+function Step({ step, delay }: { step: (typeof steps)[number]; delay: number }) {
+  const Icon = step.icon;
   return (
-    <div className="relative mt-16 lg:mt-20">
-      <div
-        aria-hidden
-        className="absolute top-7 right-6 left-6 hidden h-px border-t border-dashed border-brand/30 lg:block"
-      />
-      <motion.span
-        aria-hidden
-        initial={{ left: "3%", opacity: 0 }}
-        whileInView={{
-          left: ["3%", "97%"],
-          opacity: [0, 1, 1, 0],
-          y: [0, -7, 0, 7, 0],
-        }}
-        viewport={{ once: true, margin: "-15% 0px" }}
-        transition={{ duration: 4.6, ease: "easeInOut", delay: 0.4 }}
-        className="absolute top-[26px] hidden size-2.5 rounded-full bg-brand shadow-[0_0_0_5px_oklch(0.48_0.21_262_/_0.15)] lg:block"
-      />
-
-      <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
-        {track.map((t, i) => (
-          <Reveal key={t.label} delay={0.1 + i * 0.08}>
-            <div className="flex flex-col items-center gap-3">
-              <motion.span
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.5, ease }}
-                className="grid size-14 place-items-center rounded-full bg-card shadow-soft ring-1 ring-border/60"
-              >
-                <t.icon className="size-5 text-brand" strokeWidth={1.5} aria-hidden />
-              </motion.span>
-              <p className="text-center text-[11px] font-medium text-muted-foreground">{t.label}</p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function BlockStrip() {
-  return (
-    <Reveal delay={0.15}>
-      <div className="mt-16 grid gap-6 rounded-[1.75rem] bg-mist p-6 lg:grid-cols-[1.1fr_1fr_1fr] lg:items-center lg:gap-5">
-        <div className="flex items-center gap-4">
-          <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-brand/12">
-            <Users className="size-6 text-brand" strokeWidth={1.5} aria-hidden />
-          </span>
-          <div className="min-w-0">
-            <p className="text-base font-bold tracking-tight">The block stays when it matters.</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-              Your buddy keeps the power in their hands.
-            </p>
-          </div>
-        </div>
-
-        <Plan
-          icon={Bell}
-          tone="soft"
-          title="On free"
-          body="You're notified. They're in the loop."
-        />
-        <Plan
-          icon={BadgeCheck}
-          tone="brand"
-          title="On premium"
-          body="They must approve for you to continue."
-        />
+    <Reveal delay={delay}>
+      <div className="flex flex-col items-center text-center">
+        <span className="grid size-14 place-items-center rounded-full bg-deep-foreground/8 ring-1 ring-deep-foreground/10">
+          <Icon className="size-6 text-brand-soft" strokeWidth={1.5} aria-hidden />
+        </span>
+        <p className="mt-5 text-[11px] font-semibold tracking-[0.22em] text-brand-soft">{step.n}</p>
+        <h3 className="mt-2.5 text-lg font-bold tracking-tight text-deep-foreground">
+          {step.title}
+        </h3>
+        <p className="mt-2.5 max-w-[18rem] text-[0.95rem] leading-relaxed text-deep-foreground/65">
+          {step.body}
+        </p>
       </div>
     </Reveal>
   );
 }
 
-function Plan({
-  icon: Icon,
-  title,
-  body,
-  tone,
-}: {
-  icon: typeof Bell;
-  title: string;
-  body: string;
-  tone: "soft" | "brand";
-}) {
+/** Hairline that draws itself left-to-right, then lands a chevron. Desktop only —
+ *  on mobile the steps stack, so a horizontal arrow would point nowhere. */
+function Connector({ delay }: { delay: number }) {
   return (
-    <motion.div
-      whileHover={{ y: -3 }}
-      transition={{ duration: 0.5, ease }}
-      className="flex items-center gap-3.5 rounded-2xl bg-card px-4 py-4 shadow-soft"
+    <motion.svg
+      aria-hidden
+      viewBox="0 0 64 8"
+      fill="none"
+      className="mt-7 hidden h-2 w-16 text-deep-foreground/30 lg:block"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-12% 0px" }}
     >
-      <span
-        className={`grid size-10 shrink-0 place-items-center rounded-full ${
-          tone === "brand" ? "bg-brand text-primary-foreground" : "bg-brand/10 text-brand"
-        }`}
-      >
-        <Icon className="size-4.5" strokeWidth={1.6} aria-hidden />
-      </span>
-      <div className="min-w-0">
-        <p className="text-sm font-bold">{title}</p>
-        <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{body}</p>
-      </div>
-    </motion.div>
+      <motion.path
+        d="M2 4 H57"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1 } }}
+        transition={{ duration: 0.9, delay, ease }}
+      />
+      <motion.path
+        d="M53 1.2 L57 4 L53 6.8"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+        transition={{ duration: 0.45, delay: delay + 0.75, ease }}
+      />
+    </motion.svg>
   );
 }
