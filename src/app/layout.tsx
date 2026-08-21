@@ -20,12 +20,28 @@ export const viewport: Viewport = {
 
 // Canonical + Open Graph URLs need an absolute origin. Set NEXT_PUBLIC_SITE_URL
 // to the custom domain in Vercel; VERCEL_URL is only the per-deployment hostname.
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+// A blank or malformed value must never take the whole page down, so this
+// tolerates a missing protocol and falls back rather than throwing.
+const FALLBACK_ORIGIN = "http://localhost:3000";
+
+function resolveSiteUrl(): URL {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const vercelHost = process.env.VERCEL_URL?.trim();
+  const candidate = configured || (vercelHost ? `https://${vercelHost}` : "") || FALLBACK_ORIGIN;
+  const withProtocol = /^https?:\/\//i.test(candidate) ? candidate : `https://${candidate}`;
+
+  try {
+    return new URL(withProtocol);
+  } catch {
+    console.warn(`[metadata] NEXT_PUBLIC_SITE_URL is not a valid URL: "${candidate}"`);
+    return new URL(FALLBACK_ORIGIN);
+  }
+}
+
+const siteUrl = resolveSiteUrl();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: siteUrl,
   title: {
     default: "Spara — Recovery with someone beside you",
     template: "%s",
